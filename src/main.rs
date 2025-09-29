@@ -1,6 +1,12 @@
+mod command;
+
 use std::io::{self, Write};
+use command::{CommandRegistry, register_commands, dispatch_line};
 
 fn main() {
+    let mut registry = CommandRegistry::new();
+    register_commands(&mut registry);
+
     println!("GameShell v0.1 — tape 'help' ou 'exit'.");
 
     loop {
@@ -14,22 +20,12 @@ fn main() {
         }
 
         let line = input.trim();
-
         if line.is_empty() {
             continue;
         }
 
-        match line {
-            "help" => {
-                println!("Manuel of command ?");
-            }
-            "exit" | "quit" => {
-                println!("Au revoir !");
-                break;
-            }
-            other => {
-                println!("Commande inconnue: '{}'. Tape 'help' pour l'aide.", other);
-            }
+        if !dispatch_line(&registry, line) {
+            break;
         }
     }
 }
