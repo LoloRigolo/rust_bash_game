@@ -1,3 +1,3 @@
 pub trait Command {
-    fn run(&self, args: &[&str]) -> bool;
+    fn run(&self, registry: &super::CommandRegistry, args: &[&str]) -> bool;
 }
