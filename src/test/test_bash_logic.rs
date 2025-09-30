@@ -3,22 +3,28 @@ mod tests {
     use crate::command::{CommandRegistry, dispatch_line, register_commands, help, exit};
 
     #[test]
-     fn registry_enregistre_et_recupere() {
+     fn registry_register_and_get() {
         let mut r = CommandRegistry::new();
-        r.register("help", Box::new(help::Help));
+        r.register("help", "Show every commands", Box::new(help::Help));
 
         assert!(r.get("help").is_some());
         assert!(r.get("nope").is_none());
 
-        r.register("exit", Box::new(exit::Exit));
+        r.register("exit","Quit the game", Box::new(exit::Exit));
 
         assert!(r.get("exit").is_some());
-        assert!(r.get("nope").is_none())
-
+        assert!(r.get("nope").is_none());
+        
+        assert_eq!(
+         r.get_all(),
+         vec![
+            ("exit", "Quit the game"),
+            ("help", "Show every commands"),
+         ]);
      }
 
      #[test]
-     fn dispatch_basic_et_alias() {
+     fn dispatch_basic_and_alias() {
       let mut r = CommandRegistry::new();
       register_commands(&mut r);
 
