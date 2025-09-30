@@ -1,4 +1,5 @@
 mod command;
+mod test;
 
 use std::io::{self, Write};
 use command::{CommandRegistry, register_commands, dispatch_line};
