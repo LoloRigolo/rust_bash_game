@@ -1,6 +1,7 @@
 use uuid::Uuid;
 use super::human_stat::Stats;
 
+#[derive(Debug, Clone)]
 pub struct Human {
     pub id: Uuid,
     pub age: u16,
@@ -19,4 +20,9 @@ impl Human {
             stats: Stats::random(),
         }
     }
+
+    pub fn new_born() -> Self {
+        Self::new_with_age(0)
+    }
+
 }

@@ -1,5 +1,6 @@
 use rand::Rng;
 
+#[derive(Debug, Clone)]
 pub struct Stats {
     pub dex: u8,
     pub wisdom: u8,
