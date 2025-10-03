@@ -6,3 +6,5 @@ edition = "2024"
 
 [dependencies]
 colored = "3.0.0"
+rand = "0.8"
+uuid = { version = "1", features = ["v4"] }
