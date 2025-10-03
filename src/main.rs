@@ -1,4 +1,5 @@
 mod command;
+mod object;
 mod test;
 
 use std::io::{self, Write};
